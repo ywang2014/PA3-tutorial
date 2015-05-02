@@ -1,3 +1,5 @@
+## 解决了排序问题，具体的过程没有仔细研究，吸收了data[,i] <- suppressWarnings(as.numeric(levels(data[,i])[data[,i]]))
+## perfect！！！！！！！！
 # How to manage NA when ordering data frames
 
 Let's read citiesNA.csv file
@@ -36,6 +38,7 @@ This means that we will exclude NYC and London form our data frame.
     ## indexes we get a data frame with only complete cases.
     sort_by_column_NA <- function(data,column){
         for (i in 3:4){
+       ##解决了factor排序问题？？？？直接使用as.numeric()会出现factor默认奇怪的排序！
             data[,i] <- suppressWarnings(as.numeric(levels(data[,i])[data[,i]]))
         }
         orderdata <- data[order(data[,column]),]
